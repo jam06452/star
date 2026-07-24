@@ -1,5 +1,6 @@
 import Config
-
+import Dotenvy
+source!([".env", ".#{config_env()}.env", System.get_env()])
 # config/runtime.exs is executed for all environments, including
 # during releases. It is executed after compilation and before the
 # system starts, so it is typically used to load production configuration
@@ -122,8 +123,8 @@ config :amur,
   base_url: "http://localhost:4000",
   providers: [
     github: [
-      client_id: System.fetch_env!("GITHUB_CLIENT_ID"),
-      client_secret: System.fetch_env!("GITHUB_CLIENT_SECRET")
+      client_id: env!("GITHUB_CLIENT_ID", :string!),
+      client_secret: env!("GITHUB_CLIENT_SECRET", :string!)
     ]
   ],
   on_success: &MudanWeb.AuthController.on_success/2,
