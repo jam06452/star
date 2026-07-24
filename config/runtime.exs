@@ -117,3 +117,14 @@ if config_env() == :prod do
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
 end
+
+config :amur,
+  base_url: "http://localhost:4000",
+  providers: [
+    github: [
+      client_id: System.fetch_env!("GITHUB_CLIENT_ID"),
+      client_secret: System.fetch_env!("GITHUB_CLIENT_SECRET")
+    ]
+  ],
+  on_success: &MudanWeb.AuthController.on_success/2,
+  on_failure: &MudanWeb.AuthController.on_failure/2

@@ -41,4 +41,9 @@ defmodule MudanWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
+
+  scope "/auth", alias: false do
+    pipe_through :browser
+    forward "/", Amur.Router
+  end
 end
