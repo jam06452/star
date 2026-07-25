@@ -55,7 +55,7 @@ defmodule MudanWeb.Router do
     end
   end
 
- scope "/" do
+  scope "/" do
     pipe_through :browser
 
     oban_dashboard("/oban", resolver: Mudan.Resolver)
