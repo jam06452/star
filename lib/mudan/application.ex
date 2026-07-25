@@ -8,6 +8,7 @@ defmodule Mudan.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      Mudan.Vault,
       MudanWeb.Telemetry,
       Mudan.Repo,
       {DNSCluster, query: Application.get_env(:mudan, :dns_cluster_query) || :ignore},

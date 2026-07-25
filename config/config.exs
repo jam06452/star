@@ -63,3 +63,13 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+
+config :mudan, Mudan.Vault,
+  ciphers: [
+    default: {
+      Cloak.Ciphers.AES.GCM,
+      key: Base.decode64!("ga5MIsGnjJgbpRrhzxkGWZURIUYOemizaU+qk4mGzVQ="),
+      tag: "AES.GCM.V1",
+      iv_length: 12
+    }
+  ]
