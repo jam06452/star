@@ -6,6 +6,7 @@ defmodule Mudan.Utils do
       from u in Mudan.User,
         where: u.uid == ^user_id,
         select: %{
+          uid: u.uid,
           display_name: u.display_name,
           avatar_url: u.avatar_url,
           github_token: u.github_token,
