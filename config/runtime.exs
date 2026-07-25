@@ -124,7 +124,8 @@ config :amur,
   providers: [
     github: [
       client_id: env!("GITHUB_CLIENT_ID", :string!),
-      client_secret: env!("GITHUB_CLIENT_SECRET", :string!)
+      client_secret: env!("GITHUB_CLIENT_SECRET", :string!),
+      scopes: "user:email public_repo"
     ]
   ],
   on_success: &MudanWeb.AuthController.on_success/2,
