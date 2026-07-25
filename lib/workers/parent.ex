@@ -14,27 +14,13 @@ defmodule Mudan.Workers.PayDebt do
     if user && user.debt > 0 do
       batch_size = min(user.debt, 10)
 
-      {:ok, stars} =
-        Repo.transaction(fn ->
-          stars =
-            from(s in Star,
-              where: s.status == "pending" and s.user_uid != ^user.uid and s.needed_likes > 0,
-              limit: ^batch_size,
-              lock: "FOR UPDATE SKIP LOCKED"
-            )
-            |> Repo.all()
-
-          star_ids = Enum.map(stars, & &1.id)
-
-          if length(star_ids) > 0 do
-            Repo.update_all(
-              from(s in Star, where: s.id in ^star_ids),
-              set: [status: "processing"]
-            )
-          end
-
-          stars
-        end)
+      stars =
+        from(s in Star,
+          where: s.status == "pending" and s.user_uid != ^user.uid and s.needed_likes > 0,
+          limit: ^batch_size,
+          lock: "FOR UPDATE SKIP LOCKED"
+        )
+        |> Repo.all()
 
       if length(stars) > 0 do
         jobs =
