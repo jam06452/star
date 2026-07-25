@@ -33,6 +33,20 @@ defmodule Mudan.Workers.User do
           inc: [needed_likes: -1]
         )
 
+        new_status =
+          case Mudan.Repo.one(from(r in Star, where: r.repo_id == ^repo_id)) do
+            %{needed_likes: n} when n > 0 -> "pending"
+            _ -> "completed"
+          end
+
+        Mudan.Repo.update_all(
+          from(
+            r in Star,
+            where: r.repo_id == ^repo_id
+          ),
+          set: [status: new_status]
+        )
+
         :ok
 
       {:error, reason} ->
