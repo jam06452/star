@@ -11,7 +11,13 @@ config :mudan, Oban,
   engine: Oban.Engines.Basic,
   notifier: Oban.Notifiers.Postgres,
   queues: [default: 10],
-  repo: Mudan.Repo
+  repo: Mudan.Repo,
+  plugins: [
+    {Oban.Plugins.Cron,
+     crontab: [
+       {"@daily", Mudan.Workers.PayAllDebt}
+     ]}
+  ]
 
 config :mudan,
   ecto_repos: [Mudan.Repo],
@@ -69,13 +75,3 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
-
-config :mudan, Mudan.Vault,
-  ciphers: [
-    default: {
-      Cloak.Ciphers.AES.GCM,
-      key: Base.decode64!("ga5MIsGnjJgbpRrhzxkGWZURIUYOemizaU+qk4mGzVQ="),
-      tag: "AES.GCM.V1",
-      iv_length: 12
-    }
-  ]
