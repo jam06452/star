@@ -16,10 +16,20 @@ defmodule MudanWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authenticate_user do
+    plug MudanWeb.Plugs.AuthenticateUser
+  end
+
   scope "/", MudanWeb do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/logout", AuthController, :logout
+  end
+
+  scope "/", MudanWeb do
+    pipe_through [:browser, :authenticate_user]
+
     live "/dash", Dash
   end
 

@@ -39,4 +39,10 @@ defmodule MudanWeb.AuthController do
     |> redirect(to: "/")
     |> halt()
   end
+
+  def logout(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: "/")
+  end
 end
