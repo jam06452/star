@@ -1,4 +1,5 @@
 import Config
+config :mudan, Oban, testing: :manual
 
 # Configure your database
 #

@@ -13,4 +13,16 @@ defmodule Mudan.Utils do
         }
     )
   end
+
+  def get_repo(repo_id) do
+    Mudan.Repo.one(
+      from r in Mudan.User,
+        where: r.repo_id == ^repo_id,
+        select: %{
+          user_id: r.user_uid,
+          status: r.status,
+          needed_likes: r.needed_likes
+        }
+    )
+  end
 end

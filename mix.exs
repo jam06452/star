@@ -70,7 +70,8 @@ defmodule Mudan.MixProject do
       {:dotenvy, "~> 1.0.0"},
       {:cloak_ecto, "1.3.0"},
       {:oban, "~> 2.23"},
-      {:igniter, "~> 0.5", only: [:dev]}
+      {:igniter, "~> 0.5", only: [:dev]},
+      {:oban_web, "~> 2.11"}
     ]
   end
 

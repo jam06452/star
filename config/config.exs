@@ -7,6 +7,12 @@
 # General application configuration
 import Config
 
+config :mudan, Oban,
+  engine: Oban.Engines.Basic,
+  notifier: Oban.Notifiers.Postgres,
+  queues: [default: 10],
+  repo: Mudan.Repo
+
 config :mudan,
   ecto_repos: [Mudan.Repo],
   generators: [timestamp_type: :utc_datetime]

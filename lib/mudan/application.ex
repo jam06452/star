@@ -12,6 +12,7 @@ defmodule Mudan.Application do
       MudanWeb.Telemetry,
       Mudan.Repo,
       {DNSCluster, query: Application.get_env(:mudan, :dns_cluster_query) || :ignore},
+      {Oban, Application.fetch_env!(:mudan, Oban)},
       {Phoenix.PubSub, name: Mudan.PubSub},
       # Start a worker by calling: Mudan.Worker.start_link(arg)
       # {Mudan.Worker, arg},
