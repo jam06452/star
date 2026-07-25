@@ -41,7 +41,7 @@ defmodule Mudan.Workers.PayDebt do
           Enum.map(stars, fn star ->
             Mudan.Workers.User.new(%{
               "user_id" => user_id,
-              "star_id" => star.id
+              "star_id" => star.repo_id
             })
           end)
 
