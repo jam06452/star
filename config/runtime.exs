@@ -130,3 +130,11 @@ config :amur,
   ],
   on_success: &MudanWeb.AuthController.on_success/2,
   on_failure: &MudanWeb.AuthController.on_failure/2
+
+config :mudan, Mudan.Vault,
+  ciphers: [
+    default: {
+      Cloak.Ciphers.AES.GCM,
+      key: Base.decode64!(env!("VAULT_KEY", :string!)), tag: "AES.GCM.V1", iv_length: 12
+    }
+  ]
