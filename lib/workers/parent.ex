@@ -17,8 +17,7 @@ defmodule Mudan.Workers.PayDebt do
       stars =
         from(s in Star,
           where: s.status == "pending" and s.user_uid != ^user.uid and s.needed_likes > 0,
-          limit: ^batch_size,
-          lock: "FOR UPDATE SKIP LOCKED"
+          limit: ^batch_size
         )
         |> Repo.all()
 
