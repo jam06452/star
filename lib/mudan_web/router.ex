@@ -53,12 +53,12 @@ defmodule MudanWeb.Router do
       live_dashboard "/dashboard", metrics: MudanWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
 
-    scope "/" do
-      pipe_through :browser
+ scope "/" do
+    pipe_through :browser
 
-      oban_dashboard("/oban", resolver: Mudan.Resolver)
-    end
+    oban_dashboard("/oban", resolver: Mudan.Resolver)
   end
 
   scope "/auth", alias: false do
