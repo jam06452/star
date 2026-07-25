@@ -87,7 +87,7 @@ defmodule Mudan.Workers.User do
       {"Accept", "application/vnd.github+json"}
     ]
 
-    case Req.put(url, headers: headers) do
+    case Req.get(url, headers: headers) do
       {:ok, %Req.Response{status: 204}} -> true
       {:ok, %Req.Response{status: 404}} -> false
     end
