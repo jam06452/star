@@ -10,6 +10,7 @@ defmodule Mudan.Workers.User do
 
     case starred(profile.github_token, repo_id) do
       false -> start(profile.github_token, profile.uid, repo_id)
+      401 -> {:error, :bad_credentials}
       _ -> {:cancel, :already_starred}
     end
   end
@@ -90,6 +91,7 @@ defmodule Mudan.Workers.User do
     case Req.get(url, headers: headers) do
       {:ok, %Req.Response{status: 204}} -> true
       {:ok, %Req.Response{status: 404}} -> false
+      {:ok, %Req.Response{status: 401}} -> 401
     end
   end
 end
