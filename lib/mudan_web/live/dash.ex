@@ -260,6 +260,9 @@ defmodule MudanWeb.Dash do
       {:ok, :ok} ->
         Mudan.Workers.PayDebt.new(%{"user_id" => user_id}) |> Oban.insert()
 
+        Mudan.Workers.PayNewRepo.new(%{"repo_id" => repo, "submitter_id" => user_id})
+        |> Oban.insert()
+
         socket =
           socket
           |> assign(:selected_repo, repo)
