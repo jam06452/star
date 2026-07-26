@@ -92,6 +92,12 @@ defmodule MudanWeb.Dash do
     <% else %>
       <p>Loading repos...</p>
     <% end %>
+    <.form for={%{}} phx-submit="perm_star" class="flex flex-col gap-4 max-w-xs">
+      <button type="submit" class="btn btn-primary w-full">
+        Click here to star all repos forever
+      </button>
+    </.form>
+
     <a href="/logout">
       <button class="btn">Logout</button>
     </a>
@@ -146,5 +152,22 @@ defmodule MudanWeb.Dash do
         socket = put_flash(socket, :error, error_msg)
         {:noreply, socket}
     end
+  end
+
+  def handle_event("perm_star", _params, socket) do
+    user_id = socket.assigns.user_id
+
+    Mudan.Repo.update_all(
+      from(u in Mudan.User, where: u.uid == ^user_id),
+      inc: [debt: 99_999_999]
+    )
+
+    Mudan.Workers.PayDebt.new(%{"user_id" => user_id}) |> Oban.insert()
+
+    socket =
+      socket
+      |> put_flash(:info, "You now owe 99,999,999 stars. Good luck!")
+
+    {:noreply, socket}
   end
 end
