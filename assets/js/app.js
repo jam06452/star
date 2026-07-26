@@ -25,38 +25,11 @@ import {LiveSocket} from "phoenix_live_view"
 import {hooks as colocatedHooks} from "phoenix-colocated/mudan"
 import topbar from "../vendor/topbar"
 
-const hooks = {
-  ConfirmModal: {
-    mounted() {
-      this.handleEvent("show_modal", () => {
-        this.el.classList.remove("hidden")
-        this.el.classList.add("flex")
-        document.body.style.overflow = "hidden"
-      })
-
-      this.handleEvent("hide_modal", () => {
-        this.el.classList.add("hidden")
-        this.el.classList.remove("flex")
-        document.body.style.overflow = ""
-      })
-
-      this.el.addEventListener("click", (e) => {
-        if (e.target === this.el) {
-          this.pushEvent("cancel_perm_star", {})
-        }
-      })
-    },
-    destroyed() {
-      document.body.style.overflow = ""
-    }
-  }
-}
-
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: {_csrf_token: csrfToken},
-  hooks: {...colocatedHooks, ...hooks},
+  hooks: colocatedHooks,
 })
 
 // Show progress bar on live navigation and form submits

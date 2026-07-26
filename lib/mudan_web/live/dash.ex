@@ -172,10 +172,9 @@ defmodule MudanWeb.Dash do
 
           <.form for={%{}} phx-submit="perm_star" id="perm-star-form">
             <button
-              type="submit"
+              type="button"
               class="w-full px-6 py-3.5 rounded-xl bg-red-600 text-white font-semibold hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200"
-              phx-click="confirm_perm_star"
-              phx-disable-with="Are you absolutely sure? Click again to confirm."
+              phx-click={JS.add_class("opacity-100 pointer-events-auto", to: "#confirm-modal") |> JS.remove_class("opacity-0 pointer-events-none", to: "#confirm-modal")}
             >
               I Understand - Star Everything Forever
             </button>
@@ -194,10 +193,9 @@ defmodule MudanWeb.Dash do
     <!-- Confirmation Modal for Perm Star -->
     <div
       id="confirm-modal"
-      class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
-      phx-hook="ConfirmModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200"
     >
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-md w-full animate-slide-in">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-md w-full animate-slide-in" phx-click-away={JS.remove_class("opacity-100 pointer-events-auto", to: "#confirm-modal") |> JS.add_class("opacity-0 pointer-events-none", to: "#confirm-modal")}>
         <div class="p-6">
           <div class="flex items-center gap-3 mb-4">
             <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
@@ -213,7 +211,7 @@ defmodule MudanWeb.Dash do
             <button
               type="button"
               class="flex-1 px-5 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200"
-              phx-click="cancel_perm_star"
+              phx-click={JS.remove_class("opacity-100 pointer-events-auto", to: "#confirm-modal") |> JS.add_class("opacity-0 pointer-events-none", to: "#confirm-modal")}
             >
               Cancel
             </button>
@@ -221,7 +219,7 @@ defmodule MudanWeb.Dash do
               type="submit"
               form="perm-star-form"
               class="flex-1 px-6 py-3.5 rounded-xl bg-red-600 text-white font-semibold hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200"
-              phx-click="confirm_perm_star"
+              phx-click={JS.remove_class("opacity-100 pointer-events-auto", to: "#confirm-modal") |> JS.add_class("opacity-0 pointer-events-none", to: "#confirm-modal")}
             >
               Confirm
             </button>
@@ -295,16 +293,11 @@ defmodule MudanWeb.Dash do
     socket =
       socket
       |> put_flash(:info, "You now owe 99,999,999 stars. Good luck!")
-      |> push_event("hide_modal", %{})
 
     {:noreply, socket}
   end
 
-  def handle_event("cancel_perm_star", _params, socket) do
-    {:noreply, push_event(socket, "hide_modal", %{})}
-  end
-
   def handle_event("perm_star", _params, socket) do
-    {:noreply, push_event(socket, "show_modal", %{})}
+    {:noreply, socket}
   end
 end
