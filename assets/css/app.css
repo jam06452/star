@@ -10,61 +10,63 @@
    The heroicons installation itself is managed by your mix.exs */
 @plugin "../vendor/heroicons";
 
-/* daisyUI Tailwind Plugin. You can update this file by fetching the latest version with:
-   curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.js
-   Make sure to look at the daisyUI changelog: https://daisyui.com/docs/changelog/ */
-   /* See the Tailwind configuration guide for advanced usage
-      https://tailwindcss.com/docs/configuration */
+/* daisyUI Tailwind Plugin */
+@plugin "../vendor/daisyui" {
+  themes: all;
+}
 
-   @import "tailwindcss" source(none);
-   @source "../css";
-   @source "../js";
-   @source "../../lib/mudan_web";
-
-   /* A Tailwind plugin that makes "hero-#{ICON}" classes available.
-      The heroicons installation itself is managed by your mix.exs */
-   @plugin "../vendor/heroicons";
-
-   /* daisyUI Tailwind Plugin. You can update this file by fetching the latest version with:
-      curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui.js
-      Make sure to look at the daisyUI changelog: https://daisyui.com/docs/changelog/ */
-   @plugin "../vendor/daisyui" {
-     themes: all;
-   }
-
-   /* daisyUI theme plugin. You can update this file by fetching the latest version with:
-     curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.js
-     We ship with two themes, a light one inspired on Phoenix colors and a dark one inspired
-     on Elixir colors. Build your own at: https://daisyui.com/theme-generator/ */
-
-   /* Add variants based on LiveView classes */
-   @custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
-   @custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
-   @custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
-
-   /* Use the data attribute for dark mode  */
-   @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
-   /* Make LiveView wrapper divs transparent for layout */
-   [data-phx-session], [data-phx-teleported-src] { display: contents }
-
-   /* This file is for your main application CSS */
-
-
-/* daisyUI theme plugin. You can update this file by fetching the latest version with:
-  curl -sLO https://github.com/saadeghi/daisyui/releases/latest/download/daisyui-theme.js
-  We ship with two themes, a light one inspired on Phoenix colors and a dark one inspired
-  on Elixir colors. Build your own at: https://daisyui.com/theme-generator/ */
+/* daisyUI theme plugin */
+@plugin "../vendor/daisyui-theme.js";
 
 /* Add variants based on LiveView classes */
 @custom-variant phx-click-loading (.phx-click-loading&, .phx-click-loading &);
 @custom-variant phx-submit-loading (.phx-submit-loading&, .phx-submit-loading &);
 @custom-variant phx-change-loading (.phx-change-loading&, .phx-change-loading &);
 
-/* Use the data attribute for dark mode  */
+/* Use the data attribute for dark mode */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 /* Make LiveView wrapper divs transparent for layout */
 [data-phx-session], [data-phx-teleported-src] { display: contents }
 
-/* This file is for your main application CSS */
+/* ========================================
+   Custom Animations & Utilities
+   ======================================== */
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}

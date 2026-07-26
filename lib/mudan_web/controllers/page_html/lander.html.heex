@@ -1,18 +1,120 @@
-<a href="/auth/github">
-  <button class="btn bg-black text-white border-black">
-    <svg
-      aria-label="GitHub logo"
-      width="16"
-      height="16"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
-      <path
-        fill="white"
-        d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"
-      >
-      </path>
-    </svg>
-    Login with GitHub
-  </button>
-</a>
+<Layouts.flash_group flash={@flash} />
+<div class="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
+  <header class="px-4 sm:px-6 lg:px-8 xl:px-16">
+    <div class="mx-auto max-w-5xl flex items-center justify-between py-4">
+      <Layouts.theme_toggle />
+    </div>
+  </header>
+
+  <section class="px-4 py-16 sm:px-6 lg:px-8 xl:px-16">
+    <div class="mx-auto max-w-5xl text-center">
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 tracking-tight mb-6">
+        Github, Stars
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Automate stars. Pick a repo, and let the system handle the rest.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/auth/github" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-blue-600 text-white font-semibold text-lg hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-sm shadow-blue-500/25 inline-flex items-center justify-center">
+          <.icon name="hero-arrow-right-on-rectangle" class="size-5 mr-2" />
+          Sign in with GitHub
+        </a>
+        <a href="https://github.com/jam06452/star" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold text-lg hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 border border-gray-200 dark:border-gray-700 text-center">
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-16 sm:px-6 lg:px-8 xl:px-16 bg-white dark:bg-gray-900 border-y border-gray-200 dark:border-gray-800">
+    <div class="mx-auto max-w-5xl">
+      <header class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          How it works
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Simple workflow to keep your star count honest
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-5">
+            <.icon name="hero-code-bracket" class="size-6 text-blue-600 dark:text-blue-400" />
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+            Pick a Repository
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Connect your GitHub account and select any public repository you want to star.
+          </p>
+        </article>
+
+        <article class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center mb-5">
+            <.icon name="hero-star" class="size-6 text-amber-600 dark:text-amber-400" />
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+            Set Your Star Goal
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Choose how many stars you want to owe (1-1000). The system tracks your debt.
+          </p>
+        </article>
+
+        <article class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
+          <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-5">
+            <.icon name="hero-arrow-path" class="size-6 text-green-600 dark:text-green-400" />
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+            Automatic Repayment
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Background workers star repositories on your behalf until your debt is cleared.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-16 sm:px-6 lg:px-8 xl:px-16">
+    <div class="mx-auto max-w-3xl text-center">
+      <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 sm:p-12 border border-gray-200 dark:border-gray-800 shadow-sm">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          Ready to start?
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+          Connect your GitHub account and set up your first star debt in seconds.
+        </p>
+        <a href="/auth/github" class="inline-flex items-center px-8 py-4 rounded-xl bg-blue-600 text-white font-semibold text-lg hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-sm shadow-blue-500/25">
+          <.icon name="hero-arrow-right-on-rectangle" class="size-5 mr-2" />
+          Get Started Free
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="px-4 py-10 sm:px-6 lg:px-8 xl:px-16 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+    <div class="mx-auto max-w-5xl">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-500 dark:text-gray-400 text-center md:text-left">
+          UI made by <a href="github.com/seradedstripes" target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">SeradedStripes</a>
+        </p>
+        <div class="flex items-center gap-6">
+          <a href="https://github.com/jam06452/star" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+            GitHub
+          </a>
+          <a href="https://phoenixframework.org" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+            Phoenix
+          </a>
+          <a href="https://elixir-lang.org" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+            Elixir
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

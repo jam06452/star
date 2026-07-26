@@ -19,7 +19,7 @@ defmodule MudanWeb.Dash do
         headers = [{"Authorization", "Bearer #{profile.github_token}"}]
 
         {:ok, res} =
-          Req.get("https://api.github.com/users/#{profile.display_name}/repos?type=public",
+          Req.get("https://api.github.com/users/#{profile.display_name}/repos?type=public&per_page=100",
             headers: headers
           )
 
@@ -32,75 +32,203 @@ defmodule MudanWeb.Dash do
 
   def render(assigns) do
     ~H"""
-    <.flash kind={:info} flash={@flash} />
-    <.flash kind={:error} flash={@flash} />
+    <div class="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200" id="dashboard">
+      <div class="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <header class="mb-8">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div>
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <%= @display_name %>
+                </h1>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mt-0.5">
+                  GitHub Stars Dashboard
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <Layouts.theme_toggle />
+              <a href="/logout" class="px-5 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 text-sm">
+                Logout
+              </a>
+            </div>
+          </div>
+        </header>
 
-    <label class="swap swap-rotate">
-      <input type="checkbox" class="theme-controller" value="light" />
-      <svg
-        class="swap-off h-10 w-10 fill-current"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-      >
-        <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
-      </svg>
-      <svg
-        class="swap-on h-10 w-10 fill-current"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-      >
-        <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
-      </svg>
-    </label>
+        <!-- Flash Messages -->
+        <div id="flash-messages" class="mb-6">
+          <.flash kind={:info} flash={@flash} />
+          <.flash kind={:error} flash={@flash} />
+        </div>
 
-    <p>{@display_name}</p>
-    <img src={@avatar_url} />
-
-    <%= if @repos.ok? do %>
-      <.form for={%{}} phx-submit="select_repo" class="flex flex-col gap-4 max-w-xs">
-        <div class="form-control w-full">
-          <label class="label">
-            <span class="label-text">Select Repository</span>
-          </label>
-          <select name="repo" class="select select-bordered w-full">
-            <%= for repo <- @repos.result do %>
-              <option value={repo}>{repo}</option>
+        <!-- Repository Selection Section -->
+        <section class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 space-y-6" id="repo-selection">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+              <.icon name="hero-code-bracket" class="size-5" />
+              Select Repository
+            </h2>
+            <%= if @repos.ok? && @repos.result && length(@repos.result) > 0 do %>
+              <span class="px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200"><%= length(@repos.result) %> repos</span>
             <% end %>
-          </select>
+          </div>
+
+          <%= if @repos.ok? do %>
+            <.form for={%{}} phx-submit="select_repo" id="repo-form" class="space-y-5">
+              <!-- Repository Select -->
+              <div>
+                <label for="repo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Repository</label>
+                <select name="repo" id="repo" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 appearance-none bg-no-repeat bg-right pr-10 bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 20 20%22><path stroke=%22%236b7280%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%221.5%22 d=%22M6 8l4 4 4-4%22/>')]" required>
+                  <option value="" disabled selected>Choose a repository...</option>
+                  <%= for repo <- @repos.result do %>
+                    <option value={repo}><%= repo %></option>
+                  <% end %>
+                </select>
+                <p class="mt-1.5 text-sm text-gray-500 dark:text-gray-400">
+                  Public repositories from your GitHub account
+                </p>
+              </div>
+
+              <!-- Stars Limit Input -->
+              <div>
+                <label for="limit" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Amount of Stars</label>
+                <div class="relative">
+                  <input
+                    type="number"
+                    name="limit"
+                    id="limit"
+                    min="1"
+                    max="1000"
+                    value="10"
+                    required
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 pr-12"
+                    placeholder="10"
+                  />
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-medium">
+                    stars
+                  </span>
+                </div>
+                <p class="mt-1.5 text-sm text-gray-500 dark:text-gray-400">
+                  How many stars you want to owe (1-1000)
+                </p>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="w-full px-6 py-3.5 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed" phx-disable-with="Submitting...">
+                Start Starring
+              </button>
+            </.form>
+
+            <!-- Selected Repo Confirmation -->
+            <%= if @selected_repo do %>
+              <div class="mt-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg animate-slide-in">
+                <div class="flex items-center gap-3">
+                  <.icon name="hero-check-circle" class="size-5 text-green-600 dark:text-green-400 shrink-0" />
+                  <div class="flex-1">
+                    <p class="text-green-800 dark:text-green-200 font-medium">Repository Selected</p>
+                    <p class="text-green-700 dark:text-green-300 text-sm mt-0.5 font-mono text-base">
+                      <%= @selected_repo %>
+                    </p>
+                  </div>
+                  <span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200">
+                    Pending
+                  </span>
+                </div>
+              </div>
+            <% end %>
+
+          <% else %>
+            <!-- Loading State -->
+            <div class="space-y-4">
+              <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-10 w-3/4 rounded-lg" />
+              <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-10 w-1/2 rounded-lg" />
+              <div class="animate-pulse bg-gray-200 dark:bg-gray-700 h-12 w-1/4 rounded-lg" />
+            </div>
+          <% end %>
+        </section>
+
+        <!-- Permanent Star Section -->
+        <section class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 space-y-6" id="perm-star">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+              <.icon name="hero-sparkles" class="size-5 text-amber-500" />
+              Nuclear Option
+            </h2>
+          </div>
+
+          <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-5 mb-4">
+            <div class="flex items-start gap-3">
+              <.icon name="hero-exclamation-triangle" class="size-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+              <div class="flex-1">
+                <h3 class="text-amber-800 dark:text-amber-200 font-semibold">Permanent Star Debt</h3>
+                <p class="text-amber-700 dark:text-amber-300 text-sm mt-1">
+                  This will add 99,999,999 stars to your debt. Once submitted, you'll need to star
+                  that many repositories to clear it. This action cannot be undone.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <.form for={%{}} phx-submit="perm_star" id="perm-star-form">
+            <button
+              type="submit"
+              class="w-full px-6 py-3.5 rounded-xl bg-red-600 text-white font-semibold hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200"
+              phx-click="confirm_perm_star"
+              phx-disable-with="Are you absolutely sure? Click again to confirm."
+            >
+              I Understand - Star Everything Forever
+            </button>
+          </.form>
+        </section>
+
+        <!-- Footer Info -->
+        <footer class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+            UI made by <a href="github.com/seradedstripes" class="text-blue-600 dark:text-blue-400 hover:underline">SeradedStripes</a>
+          </p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal for Perm Star -->
+    <div
+      id="confirm-modal"
+      class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      phx-hook="ConfirmModal"
+    >
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-md w-full animate-slide-in">
+        <div class="p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+              <.icon name="hero-exclamation-triangle" class="size-6 text-red-600 dark:text-red-400" />
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Confirm Permanent Star Debt</h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            This will add <strong class="text-red-600 dark:text-red-400">99,999,999 stars</strong> to your debt.
+            You'll need to star that many repositories to clear it. This action is irreversible.
+          </p>
+          <div class="flex gap-3">
+            <button
+              type="button"
+              class="flex-1 px-5 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200"
+              phx-click="cancel_perm_star"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              form="perm-star-form"
+              class="flex-1 px-6 py-3.5 rounded-xl bg-red-600 text-white font-semibold hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200"
+              phx-click="confirm_perm_star"
+            >
+              Confirm
+            </button>
+          </div>
         </div>
-
-        <div class="form-control w-full">
-          <label class="label">
-            <span class="label-text">Amount of Stars</span>
-          </label>
-          <input
-            type="number"
-            name="limit"
-            min="0"
-            max="1000"
-            placeholder="0"
-            class="input input-bordered w-full"
-          />
-        </div>
-
-        <button type="submit" class="btn btn-primary w-full">Select</button>
-      </.form>
-
-      <%= if @selected_repo do %>
-        <p>You picked: <strong>{@selected_repo}</strong></p>
-      <% end %>
-    <% else %>
-      <p>Loading repos...</p>
-    <% end %>
-    <.form for={%{}} phx-submit="perm_star" class="flex flex-col gap-4 max-w-xs">
-      <button type="submit" class="btn btn-primary w-full">
-        Click here to star all repos forever
-      </button>
-    </.form>
-
-    <a href="/logout">
-      <button class="btn">Logout</button>
-    </a>
+      </div>
+    </div>
     """
   end
 
@@ -154,7 +282,7 @@ defmodule MudanWeb.Dash do
     end
   end
 
-  def handle_event("perm_star", _params, socket) do
+  def handle_event("confirm_perm_star", _params, socket) do
     user_id = socket.assigns.user_id
 
     Mudan.Repo.update_all(
@@ -167,7 +295,16 @@ defmodule MudanWeb.Dash do
     socket =
       socket
       |> put_flash(:info, "You now owe 99,999,999 stars. Good luck!")
+      |> push_event("hide_modal", %{})
 
     {:noreply, socket}
+  end
+
+  def handle_event("cancel_perm_star", _params, socket) do
+    {:noreply, push_event(socket, "hide_modal", %{})}
+  end
+
+  def handle_event("perm_star", _params, socket) do
+    {:noreply, push_event(socket, "show_modal", %{})}
   end
 end
