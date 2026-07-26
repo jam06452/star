@@ -120,7 +120,7 @@ if config_env() == :prod do
 end
 
 config :amur,
-  base_url: "https://star.jam06452.uk",
+  base_url: "http://localhost:4000",
   providers: [
     github: [
       client_id: env!("GITHUB_CLIENT_ID", :string!),

@@ -1,18 +1,409 @@
-<a href="/auth/github">
-  <button class="btn bg-black text-white border-black">
-    <svg
-      aria-label="GitHub logo"
-      width="16"
-      height="16"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
-      <path
-        fill="white"
-        d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"
-      >
-      </path>
-    </svg>
-    Login with GitHub
-  </button>
-</a>
+<div class="min-h-screen bg-base-100 text-base-content flex flex-col">
+  <!-- Hero Section -->
+  <main class="flex-grow flex items-center">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-4 py-16 md:py-24 items-center w-full">
+      
+<!-- Left Content -->
+      <div class="flex flex-col gap-6">
+        <div class="badge badge-primary badge-outline font-semibold py-3 px-4 w-fit">
+          Open Source & Free
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+          Automate your <span class="text-primary">GitHub</span> stars.
+        </h1>
+        <p class="text-lg text-base-content/70 max-w-md">
+          Connect your account, select a repository, and manage your project's stars effortlessly. Built for developers, by developers.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mt-4">
+          <a
+            href="/auth/github"
+            class="btn bg-black text-white border-black hover:bg-black/90 hover:border-black/90 gap-2 px-6 btn-lg"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+            </svg>
+            Continue with GitHub
+          </a>
+          <a href="#how-it-works" class="btn btn-ghost btn-lg">
+            Learn More
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <div class="flex items-center gap-4 mt-6 text-sm text-base-content/60">
+          <!-- Fake social proof -->
+          <div class="avatar-group -space-x-6 rtl:space-x-reverse">
+            <div class="avatar">
+              <div class="w-10">
+                <img src="https://avatars.githubusercontent.com/u/197050206?v=4" />
+              </div>
+            </div>
+            <div class="avatar">
+              <div class="w-10">
+                <img src="https://avatars.githubusercontent.com/u/84497411?v=4" />
+              </div>
+            </div>
+            <div class="avatar">
+              <div class="w-10">
+                <img src="https://avatars.githubusercontent.com/u/172634814?v=4" />
+              </div>
+            </div>
+          </div>
+          <span>Trusted by many developers</span>
+        </div>
+      </div>
+      
+<!-- Right Content: App Mockup -->
+      <div class="hidden md:block relative">
+        <div class="mockup-window border border-base-300 bg-base-200/50 w-full max-w-lg mx-auto">
+          <div class="bg-base-100 px-4 py-6 flex flex-col gap-4">
+            <div class="flex items-center gap-3 border-b border-base-200 pb-4">
+              <div class="avatar">
+                <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    alt="Avatar"
+                  />
+                </div>
+              </div>
+              <div>
+                <p class="font-semibold">Jane Doe</p>
+                <p class="text-xs text-base-content/60">@janedoe</p>
+              </div>
+            </div>
+
+            <label class="form-control w-full">
+              <div class="label">
+                <span class="label-text font-semibold">Select Repository</span>
+              </div>
+              <select class="select select-bordered w-full font-mono text-sm" disabled>
+                <option>star-sync/app</option>
+              </select>
+            </label>
+
+            <label class="form-control w-full">
+              <div class="label">
+                <span class="label-text font-semibold">Amount of Stars</span>
+                <span class="label-text-alt text-base-content/50">Max 1000</span>
+              </div>
+              <input
+                type="number"
+                placeholder="e.g., 100"
+                class="input input-bordered w-full"
+                disabled
+              />
+            </label>
+
+            <button class="btn btn-primary w-full mt-2" disabled>Update Repository</button>
+          </div>
+        </div>
+        <!-- Decorative background blobs -->
+        <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl -z-10">
+        </div>
+        <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary/20 rounded-full blur-2xl -z-10">
+        </div>
+      </div>
+    </div>
+  </main>
+  
+<!-- Features Section -->
+  <section id="features" class="bg-base-200/50 border-t border-base-300 py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Built for simplicity</h2>
+        <p class="text-base-content/60 mt-4 max-w-2xl mx-auto">
+          Everything you need to manage repository stars, nothing you don't.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="card bg-base-100 border border-base-300 shadow-sm">
+          <div class="card-body">
+            <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"
+                />
+              </svg>
+            </div>
+            <h3 class="card-title text-lg">Secure OAuth</h3>
+            <p class="text-base-content/60">
+              Login securely via GitHub. We never store your passwords, only your session token.
+            </p>
+          </div>
+        </div>
+        
+<!-- Card 2 -->
+        <div class="card bg-base-100 border border-base-300 shadow-sm">
+          <div class="card-body">
+            <div class="w-12 h-12 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"
+                />
+              </svg>
+            </div>
+            <h3 class="card-title text-lg">Repo Management</h3>
+            <p class="text-base-content/60">
+              Dynamically fetch your repositories and select which ones need a boost in stars.
+            </p>
+          </div>
+        </div>
+        
+<!-- Card 3 -->
+        <div class="card bg-base-100 border border-base-300 shadow-sm">
+          <div class="card-body">
+            <div class="w-12 h-12 rounded-lg bg-accent/10 text-accent flex items-center justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"
+                />
+              </svg>
+            </div>
+            <h3 class="card-title text-lg">Instant Boost</h3>
+            <p class="text-base-content/60">
+              Apply stars to your selected repositories instantly with just one click.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!-- How It Works (Star Debt P2P Section) -->
+  <section id="how-it-works" class="bg-base-100 border-t border-base-300 py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <div class="badge badge-outline badge-lg font-semibold py-3 px-4 w-fit mb-4">
+          Collaborative Exchange
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Powered by Star Debt</h2>
+        <p class="text-base-content/60 mt-4 max-w-2xl mx-auto">
+          Star Sync isn't a bot farm. It's a centralized cooperative where users pool their real GitHub tokens. The server orchestrates a peer-to-peer exchange of stars, with debt as the accounting mechanism to keep contributions balanced.
+        </p>
+      </div>
+      
+<!-- Steps Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Step 1 -->
+        <div class="flex flex-col items-start gap-4 p-6 border border-base-300 rounded-xl bg-base-200/30 relative overflow-hidden">
+          <div class="flex items-center justify-between w-full">
+            <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </div>
+            <span class="text-6xl font-extrabold text-base-content/10 absolute top-2 right-4 select-none">
+              01
+            </span>
+          </div>
+          <h3 class="text-xl font-bold z-10">Submit & Incur Debt</h3>
+          <p class="text-base-content/60 z-10">
+            Select a repo and request up to 1,000 stars. Your account balance goes into <code class="bg-base-300 text-primary px-1.5 py-0.5 rounded text-sm">debt</code>. You now owe the network that many stars in return.
+          </p>
+        </div>
+        
+<!-- Step 2 -->
+        <div class="flex flex-col items-start gap-4 p-6 border border-base-300 rounded-xl bg-base-200/30 relative overflow-hidden">
+          <div class="flex items-center justify-between w-full">
+            <div class="w-12 h-12 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"
+                />
+              </svg>
+            </div>
+            <span class="text-6xl font-extrabold text-base-content/10 absolute top-2 right-4 select-none">
+              02
+            </span>
+          </div>
+          <h3 class="text-xl font-bold z-10">The Server Pays You</h3>
+          <p class="text-base-content/60 z-10">
+            Oban workers on our server immediately route your repo to other debtors. Using their stored session tokens, the server stars your repo via the GitHub API, ticking down your <code class="bg-base-300 text-primary px-1.5 py-0.5 rounded text-sm">needed_likes</code>.
+          </p>
+        </div>
+        
+<!-- Step 3 -->
+        <div class="flex flex-col items-start gap-4 p-6 border border-base-300 rounded-xl bg-base-200/30 relative overflow-hidden">
+          <div class="flex items-center justify-between w-full">
+            <div class="w-12 h-12 rounded-lg bg-accent/10 text-accent flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
+                />
+              </svg>
+            </div>
+            <span class="text-6xl font-extrabold text-base-content/10 absolute top-2 right-4 select-none">
+              03
+            </span>
+          </div>
+          <h3 class="text-xl font-bold z-10">Pay It Forward</h3>
+          <p class="text-base-content/60 z-10">
+            To clear your ledger, your token is securely used by the server to star other pending repos. Each successful API call decrements your debt by 1. A perfectly balanced, mutual exchange.
+          </p>
+        </div>
+      </div>
+      
+<!-- Centralized P2P Visual Explainer -->
+      <div class="mt-16 p-8 border border-base-300 rounded-2xl bg-base-200/50 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="flex-1">
+          <h3 class="text-2xl font-bold mb-3">No Bots. Just Real Accounts.</h3>
+          <p class="text-base-content/60 max-w-md mb-6">
+            Centralized star farms using bots get flagged and shadowbanned by GitHub. Star Sync runs on a single trusted server, but uses a peer-to-peer network of
+            <em>real user tokens</em>
+            via Oban. Every star you receive comes from a legitimate GitHub account, making your growth indistinguishable from organic traction.
+          </p>
+
+          <div class="flex flex-wrap gap-6">
+            <div>
+              <p class="text-3xl font-bold text-primary">100%</p>
+              <p class="text-sm text-base-content/60">Real GitHub Accounts</p>
+            </div>
+            <div class="border-l border-base-300 pl-6">
+              <p class="text-3xl font-bold text-secondary">0</p>
+              <p class="text-sm text-base-content/60">Bots or Fake Farms</p>
+            </div>
+            <div class="border-l border-base-300 pl-6">
+              <p class="text-3xl font-bold text-accent">∞</p>
+              <p class="text-sm text-base-content/60">Balanced Debt Ledger</p>
+            </div>
+          </div>
+        </div>
+        
+<!-- Server / Token Network Visual -->
+        <div class="flex-1 w-full max-w-xs">
+          <div class="relative w-full aspect-square">
+            <!-- Connecting Lines -->
+            <svg
+              class="absolute inset-0 w-full h-full text-base-300"
+              viewBox="0 0 200 200"
+              fill="none"
+              stroke="currentColor"
+            >
+              <line x1="100" y1="100" x2="20" y2="40" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="100" y1="100" x2="180" y2="40" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="100" y1="100" x2="20" y2="160" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="100" y1="100" x2="180" y2="160" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="100" y1="100" x2="100" y2="180" stroke-width="1" stroke-dasharray="4 4" />
+              <line x1="100" y1="100" x2="100" y2="20" stroke-width="1" stroke-dasharray="4 4" />
+            </svg>
+            
+<!-- Central Node (Star Sync Server) -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center">
+              <div class="w-16 h-16 rounded-xl bg-primary text-primary-content flex items-center justify-center shadow-lg shadow-primary/30">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z"
+                  />
+                </svg>
+              </div>
+              <span class="text-xs font-semibold mt-2 block">Star Sync Server</span>
+            </div>
+            
+<!-- Peer Nodes (GitHub Accounts) -->
+            <div class="absolute top-[10%] left-[10%] w-12 h-12 rounded-full bg-base-200 border border-base-300 flex flex-col items-center justify-center text-base-content/60 text-[10px] font-mono font-bold">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mb-0.5">
+                <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+              </svg>
+              <span>500</span>
+            </div>
+            <div class="absolute top-[10%] right-[10%] w-12 h-12 rounded-full bg-base-200 border border-base-300 flex flex-col items-center justify-center text-base-content/60 text-[10px] font-mono font-bold">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mb-0.5">
+                <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+              </svg>
+              <span>150</span>
+            </div>
+            <div class="absolute bottom-[10%] left-[10%] w-12 h-12 rounded-full bg-base-200 border border-base-300 flex flex-col items-center justify-center text-base-content/60 text-[10px] font-mono font-bold">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mb-0.5">
+                <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+              </svg>
+              <span>1k</span>
+            </div>
+            <div class="absolute bottom-[10%] right-[10%] w-12 h-12 rounded-full bg-base-200 border border-base-300 flex flex-col items-center justify-center text-base-content/60 text-[10px] font-mono font-bold">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mb-0.5">
+                <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+              </svg>
+              <span>0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
